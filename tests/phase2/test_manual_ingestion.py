@@ -114,6 +114,20 @@ def test_duplicate_artifact_file_hash_is_rejected(tmp_path: Path) -> None:
         register_artifact(repo_root, duplicate)
 
 
+def test_duplicate_artifact_id_is_rejected(tmp_path: Path) -> None:
+    repo_root = _make_repo_root(tmp_path)
+    register_source(repo_root, _source_document())
+    register_artifact(repo_root, _artifact_document())
+
+    duplicate = {
+        **_artifact_document(),
+        "file_hash": "sha256:phase2-other-fixture",
+    }
+
+    with pytest.raises(IngestionError):
+        register_artifact(repo_root, duplicate)
+
+
 def test_generate_claim_template_is_intentionally_non_ingestable() -> None:
     template = generate_claim_template("src_phase2_source", "art_phase2_artifact")
 
@@ -175,6 +189,56 @@ def test_claim_ingestion_quarantines_incomplete_claims(tmp_path: Path) -> None:
     quarantine = load_yaml_file(result.quarantine_path)
     assert quarantine["items"][0]["draft_id"] == "clm_phase2_missing_locator"
     assert any("locator" in reason.lower() for reason in quarantine["items"][0]["reasons"])
+
+
+def test_claim_ingestion_quarantines_template_placeholder_content(tmp_path: Path) -> None:
+    repo_root = _make_repo_root(tmp_path)
+    register_source(repo_root, _source_document())
+    register_artifact(repo_root, _artifact_document())
+
+    template_like_claim = generate_claim_template("src_phase2_source", "art_phase2_artifact")
+    template_like_claim["classification"] = "observation"
+    template_like_claim["status"] = "confirmed"
+
+    result = ingest_claim_drafts(
+        repo_root,
+        {
+            "id": "reg_phase2_template_batch",
+            "entity_type": "registry",
+            "schema_version": "1.0.0",
+            "registry_type": "claim_draft_batch",
+            "items": [template_like_claim],
+        },
+    )
+
+    assert result.written_ids == []
+    assert result.quarantined_ids == [template_like_claim["id"]]
+    quarantine = load_yaml_file(result.quarantine_path)
+    reasons = quarantine["items"][0]["reasons"]
+    assert any("template placeholder content remains" in reason.lower() for reason in reasons)
+
+
+def test_claim_ingestion_quarantines_non_mapping_batch_entries(tmp_path: Path) -> None:
+    repo_root = _make_repo_root(tmp_path)
+    register_source(repo_root, _source_document())
+    register_artifact(repo_root, _artifact_document())
+
+    result = ingest_claim_drafts(
+        repo_root,
+        {
+            "id": "reg_phase2_malformed_batch",
+            "entity_type": "registry",
+            "schema_version": "1.0.0",
+            "registry_type": "claim_draft_batch",
+            "items": ["TODO_not_a_claim_mapping"],
+        },
+    )
+
+    assert result.written_ids == []
+    assert result.quarantined_ids == ["claim_draft_1"]
+    quarantine = load_yaml_file(result.quarantine_path)
+    assert quarantine["items"][0]["draft"] == "TODO_not_a_claim_mapping"
+    assert quarantine["items"][0]["reasons"] == ["Claim draft entry is not a mapping"]
 
 
 def test_repository_provenance_validation_detects_mismatched_source_artifact_pair(tmp_path: Path) -> None:

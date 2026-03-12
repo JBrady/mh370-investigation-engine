@@ -36,6 +36,9 @@ class IngestionError(ValueError):
     """Raised when an authored Phase 2 registration flow cannot proceed."""
 
 
+PLACEHOLDER_SENTINEL_PREFIXES = ("REPLACE_", "TODO_")
+
+
 def _write_yaml(path: Path, document: Any) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(dump_yaml(document), encoding="utf-8")
@@ -241,16 +244,40 @@ def generate_claim_template(source_id: str, artifact_id: str) -> dict[str, Any]:
     }
 
 
-def _parse_claim_drafts(payload: Any) -> list[dict[str, Any]]:
+def _parse_claim_drafts(payload: Any) -> list[Any]:
     if isinstance(payload, list):
-        return [item for item in payload if isinstance(item, dict)]
+        return list(payload)
     if isinstance(payload, dict) and payload.get("entity_type") == "claim":
         return [payload]
     if isinstance(payload, dict) and payload.get("entity_type") == "registry":
         items = payload.get("items", [])
         if isinstance(items, list):
-            return [item for item in items if isinstance(item, dict)]
+            return list(items)
     raise IngestionError("Claim draft input must be a claim mapping, a list of claims, or a registry of claim items")
+
+
+def _contains_placeholder_sentinel(value: Any) -> bool:
+    if not isinstance(value, str):
+        return False
+    stripped = value.strip()
+    upper = stripped.upper()
+    lower = stripped.lower()
+    return upper.startswith(PLACEHOLDER_SENTINEL_PREFIXES) or "replace_me" in lower
+
+
+def _placeholder_issues_for_claim(draft: dict[str, Any]) -> list[str]:
+    checks = [
+        ("id", draft.get("id")),
+        ("text", draft.get("text")),
+        ("classification", draft.get("classification")),
+        ("status", draft.get("status")),
+        ("provenance.locator", draft.get("provenance", {}).get("locator") if isinstance(draft.get("provenance"), dict) else None),
+    ]
+    issues: list[str] = []
+    for field_name, value in checks:
+        if _contains_placeholder_sentinel(value):
+            issues.append(f"Template placeholder content remains in {field_name}")
+    return issues
 
 
 def _quarantine_path(repo_root: Path) -> Path:
@@ -272,14 +299,35 @@ def ingest_claim_drafts(repo_root: str | Path, payload: Any) -> ClaimIngestionRe
     issues: list[str] = []
 
     for index, draft in enumerate(drafts, start=1):
-        draft_id = str(draft.get("id", f"claim_draft_{index}"))
+        draft_id = (
+            str(draft.get("id", f"claim_draft_{index}"))
+            if isinstance(draft, dict)
+            else f"claim_draft_{index}"
+        )
         draft_issues: list[str] = []
+
+        if not isinstance(draft, dict):
+            draft_issues.append("Claim draft entry is not a mapping")
+            quarantined_ids.append(draft_id)
+            quarantine_entries.append(
+                {
+                    "draft_id": draft_id,
+                    "artifact_id": None,
+                    "source_id": None,
+                    "reasons": sorted(set(draft_issues)),
+                    "draft": draft,
+                }
+            )
+            issues.extend(f"{draft_id}: {message}" for message in sorted(set(draft_issues)))
+            continue
 
         try:
             schema_issues = validate_document(draft, draft_id)
             draft_issues.extend(issue.message for issue in schema_issues)
         except Exception as exc:
             draft_issues.append(str(exc))
+
+        draft_issues.extend(_placeholder_issues_for_claim(draft))
 
         neutrality_issues = validate_neutrality(draft, draft_id)
         draft_issues.extend(issue.message for issue in neutrality_issues)
