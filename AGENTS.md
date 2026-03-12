@@ -261,4 +261,5 @@ Do not claim determinism or integrity without running the relevant tests.
 Workflow shorthand:
 
 - `yeet`: create an appropriate branch, stage the intended changes, commit, push, and open a PR
-- `full yeet`: do `yeet`, then after the PR is merged sync local `main` with remote and prune merged branches locally and remotely
+- `merged`: after a `yeet` PR is merged, sync local `main` with `origin/main`, delete the merged feature branch locally, delete it on `origin`, and prune stale remote-tracking refs
+- `full yeet`: do `yeet`, then after the PR is merged perform the full `merged` cleanup flow: sync local `main` with remote and prune merged branches locally and remotely
