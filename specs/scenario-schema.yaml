@@ -1,0 +1,52 @@
+$schema: "https://json-schema.org/draft/2020-12/schema"
+title: Scenario
+type: object
+additionalProperties: false
+required:
+  - id
+  - entity_type
+  - schema_version
+  - title
+  - family
+  - assumptions
+  - required_conditions
+  - claim_refs
+  - constraint_refs
+  - contradiction_handling
+  - explanatory_gaps
+properties:
+  id:
+    type: string
+    pattern: "^scn_[a-z0-9_]+$"
+  entity_type:
+    const: scenario
+  schema_version:
+    type: string
+  title:
+    type: string
+  family:
+    type: string
+  assumptions:
+    type: array
+    items:
+      type: string
+  required_conditions:
+    type: array
+    items:
+      type: string
+  claim_refs:
+    type: array
+    items:
+      type: string
+      pattern: "^clm_[a-z0-9_]+$"
+  constraint_refs:
+    type: array
+    items:
+      type: string
+      pattern: "^con_[a-z0-9_]+$"
+  contradiction_handling:
+    type: string
+  explanatory_gaps:
+    type: array
+    items:
+      type: string

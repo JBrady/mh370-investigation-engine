@@ -1,0 +1,7 @@
+id: con_invalid_empty_basis
+entity_type: constraint
+schema_version: "1.0.0"
+constraint_type: temporal
+constraint_status: hard
+statement: Invalid constraint fixture with no evidentiary basis.
+basis_refs: []

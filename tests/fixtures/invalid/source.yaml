@@ -1,0 +1,5 @@
+id: src_invalid_source
+entity_type: source
+schema_version: "1.0.0"
+source_type: report
+repository_classification: official

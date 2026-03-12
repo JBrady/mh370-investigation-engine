@@ -1,0 +1,6 @@
+id: geo_fixture_area
+entity_type: geo_reference
+schema_version: "1.0.0"
+label: Fixture area
+representation_type: named_area
+reference_name: Fixture region

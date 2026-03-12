@@ -1,0 +1,6 @@
+id: art_refs_artifact
+entity_type: artifact
+schema_version: "1.0.0"
+source_id: src_missing_source
+artifact_type: annex
+title: Broken reference artifact

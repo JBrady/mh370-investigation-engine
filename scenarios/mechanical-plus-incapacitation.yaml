@@ -1,0 +1,11 @@
+id: scn_mechanical_plus_incapacitation
+entity_type: scenario
+schema_version: "1.0.0"
+title: Mechanical event followed by incapacitation
+family: mechanical_plus_incapacitation
+assumptions: []
+required_conditions: []
+claim_refs: []
+constraint_refs: []
+contradiction_handling: Placeholder structure only. Evaluation logic will define treatment in a later phase.
+explanatory_gaps: []

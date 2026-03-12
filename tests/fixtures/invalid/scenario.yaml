@@ -1,0 +1,10 @@
+id: scn_invalid_scenario
+entity_type: scenario
+schema_version: "1.0.0"
+title: Invalid scenario
+family: fixture_family
+assumptions: []
+required_conditions: []
+claim_refs: []
+constraint_refs: []
+explanatory_gaps: []

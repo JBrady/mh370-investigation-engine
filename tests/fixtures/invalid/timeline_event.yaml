@@ -1,0 +1,6 @@
+id: evt_invalid_event
+entity_type: timeline_event
+schema_version: "1.0.0"
+derived: false
+claim_refs:
+  - clm_fixture_claim

@@ -1,0 +1,9 @@
+id: con_fixture_constraint
+entity_type: constraint
+schema_version: "1.0.0"
+constraint_type: physical
+constraint_status: hard
+statement: Fixture constraint statement.
+basis_refs:
+  - clm_fixture_claim
+applicability_notes: Fixture applicability notes.

@@ -1,0 +1,16 @@
+id: eval_contract_v1
+entity_type: evaluation_contract
+schema_version: "1.0.0"
+description: Deterministic evaluation contract for scenario compatibility runs.
+required_inputs:
+  - scenario_ids
+  - claim_bundle_version
+  - constraint_set_version
+  - scoring_rules_version
+required_outputs:
+  - run record
+  - machine-readable reasoning report
+  - human-readable evaluation report
+compatibility_policy:
+  scoring_model: compatibility_bands
+  winner_selection: false

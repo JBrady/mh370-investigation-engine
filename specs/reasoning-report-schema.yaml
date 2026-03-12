@@ -1,0 +1,87 @@
+$schema: "https://json-schema.org/draft/2020-12/schema"
+title: Reasoning Report
+type: object
+additionalProperties: false
+required:
+  - id
+  - entity_type
+  - schema_version
+  - run_id
+  - scenario_id
+  - compatibility_band
+  - supporting_claim_refs
+  - contradicting_claim_refs
+  - hard_constraint_failures
+  - soft_constraint_tensions
+  - explanatory_gaps
+  - assumption_load
+properties:
+  id:
+    type: string
+    pattern: "^rpt_[a-z0-9_]+$"
+  entity_type:
+    const: reasoning_report
+  schema_version:
+    type: string
+  run_id:
+    type: string
+    pattern: "^run_[a-z0-9_]+$"
+  scenario_id:
+    type: string
+    pattern: "^scn_[a-z0-9_]+$"
+  compatibility_band:
+    type: string
+    enum: [high, moderate, low, incompatible]
+  supporting_claim_refs:
+    type: array
+    items:
+      type: string
+      pattern: "^clm_[a-z0-9_]+$"
+  contradicting_claim_refs:
+    type: array
+    items:
+      type: string
+      pattern: "^clm_[a-z0-9_]+$"
+  hard_constraint_failures:
+    type: array
+    items:
+      type: string
+      pattern: "^con_[a-z0-9_]+$"
+  soft_constraint_tensions:
+    type: array
+    items:
+      type: string
+      pattern: "^con_[a-z0-9_]+$"
+  explanatory_gaps:
+    type: array
+    items:
+      type: string
+  assumption_load:
+    type: object
+    additionalProperties: false
+    required:
+      - level
+      - notes
+    properties:
+      level:
+        type: string
+        enum: [low, medium, high]
+      notes:
+        type: array
+        items:
+          type: string
+  explanation_ledger:
+    type: array
+    items:
+      type: object
+      additionalProperties: false
+      required:
+        - factor
+        - refs
+      properties:
+        factor:
+          type: string
+        refs:
+          type: array
+          items:
+            type: string

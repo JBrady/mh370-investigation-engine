@@ -1,0 +1,8 @@
+id: clm_invalid_claim
+entity_type: claim
+schema_version: "1.0.0"
+source_id: src_fixture_source
+artifact_id: art_fixture_artifact
+text: Invalid fixture claim.
+classification: confirmed
+status: confirmed

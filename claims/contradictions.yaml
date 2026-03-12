@@ -1,0 +1,6 @@
+id: reg_contradictions
+entity_type: registry
+schema_version: "1.0.0"
+registry_type: contradiction_registry
+description: Placeholder contradiction registry. Phase 3 replaces this with a derived artifact.
+items: []

@@ -1,0 +1,14 @@
+id: rpt_invalid_report
+entity_type: reasoning_report
+schema_version: "1.0.0"
+run_id: run_fixture_run
+scenario_id: scn_fixture_scenario
+compatibility_band: probabilistic
+supporting_claim_refs: []
+contradicting_claim_refs: []
+hard_constraint_failures: []
+soft_constraint_tensions: []
+explanatory_gaps: []
+assumption_load:
+  level: medium
+  notes: []

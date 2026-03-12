@@ -1,0 +1,38 @@
+$schema: "https://json-schema.org/draft/2020-12/schema"
+title: Geo Reference
+type: object
+additionalProperties: false
+required:
+  - id
+  - entity_type
+  - schema_version
+  - representation_type
+properties:
+  id:
+    type: string
+    pattern: "^geo_[a-z0-9_]+$"
+  entity_type:
+    const: geo_reference
+  schema_version:
+    type: string
+  label:
+    type: string
+  representation_type:
+    type: string
+    enum: [point, line, polygon, named_area]
+  coordinates:
+    type: array
+  reference_name:
+    type: string
+  uncertainty:
+    type: object
+    additionalProperties: false
+    properties:
+      uncertainty_type:
+        type: string
+      uncertainty_magnitude:
+        oneOf:
+          - type: string
+          - type: number
+      uncertainty_notes:
+        type: string

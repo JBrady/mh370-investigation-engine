@@ -1,0 +1,26 @@
+id: scoring_rules_v1
+entity_type: scoring_rules
+schema_version: "1.0.0"
+description: Visible compatibility band rules for early deterministic evaluation.
+compatibility_bands:
+  - high
+  - moderate
+  - low
+  - incompatible
+factor_categories:
+  - supporting_claims
+  - contradicting_claims
+  - hard_constraint_failures
+  - soft_constraint_tensions
+  - assumption_load
+  - explanatory_gaps
+policy:
+  hard_constraint_failures:
+    effect: may_force_incompatible
+  soft_constraint_tensions:
+    effect: lower_compatibility
+  contradicting_claims:
+    effect: lower_compatibility
+  assumption_load:
+    effect: lower_compatibility
+winner_selection: false

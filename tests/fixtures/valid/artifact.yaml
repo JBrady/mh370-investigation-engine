@@ -1,0 +1,10 @@
+id: art_fixture_artifact
+entity_type: artifact
+schema_version: "1.0.0"
+source_id: src_fixture_source
+artifact_type: annex
+title: Fixture artifact
+media_type: application/pdf
+locator: pages 1-2
+file_hash: sha256:fixture
+extraction_ready: true
