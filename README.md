@@ -30,22 +30,37 @@ This repository is intentionally conservative in its early phases.
 
 ## Repository shape
 
-Phase 0 and Phase 1 establish the contract layer:
+Phase 0, Phase 1, and the Phase 2 ingestion foundation now cover:
 
 - `docs/`: architecture, methodology, glossary, and reasoning contracts
 - `specs/`: JSON Schema contracts authored in YAML
-- `src/mh370_investigation_engine/`: reusable validation and utility code
-- `tests/`: schema, integrity, and determinism checks
+- `src/mh370_investigation_engine/`: reusable validation, ingestion, and utility code
+- `tests/`: schema, integrity, determinism, and ingestion checks
 - `claims/`, `constraints/`, `scenarios/`: authored analytical inputs
+- `sources/`: authored source and artifact records
 - `data/normalized/`, `data/derived/`: deterministic generated outputs
+- `tools/ingest/`, `tools/normalize/`, `tools/validate/`: thin wrappers around the Phase 2 ingestion foundation
+
+## Phase 2 foundation
+
+The repository now includes a manual-first ingestion foundation for:
+
+- source registration
+- artifact registration
+- claim authoring template generation
+- claim ingestion and normalization
+- provenance validation
+- quarantine output for incomplete or unsupported claim drafts
+- deterministic normalized bundles for sources, artifacts, and claims
 
 ## Validation posture
 
-The initial implementation enforces:
+The current implementation enforces:
 
 - schema validation
 - field-aware reference integrity validation
 - neutrality validation
+- provenance validation
 - deterministic serialization and bundle-ordering checks
 
 CI is expected to fail on repository contract violations.

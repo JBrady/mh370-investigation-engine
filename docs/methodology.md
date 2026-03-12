@@ -48,6 +48,12 @@ Derived objects:
 
 Derived outputs are inspectable products, not hand-authored truth.
 
+During the current Phase 2 foundation:
+
+- sources, artifacts, and claims are authored manually
+- normalized bundles are generated deterministically
+- unsupported or incomplete claim drafts are quarantined into derived outputs rather than merged into authored claims
+
 ## Neutrality enforcement
 
 Neutrality is enforced structurally and methodologically.
@@ -62,3 +68,5 @@ Structural constraints include:
 Keyword checks may be used as lightweight linting, but lexical filtering is not the primary safeguard.
 
 Reference integrity is also enforced structurally. Core fields such as `source_id`, `artifact_id`, `claim_refs`, and `constraint_refs` are validated against both existence and expected target type.
+
+Provenance is also validated structurally for claim ingestion. A claim must not only contain provenance fields, it must also preserve a consistent `source_id` / `artifact_id` relationship against the registered artifact record.

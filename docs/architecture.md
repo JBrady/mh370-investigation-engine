@@ -19,6 +19,12 @@ Authored directories:
 - `constraints/`
 - `scenarios/`
 
+Phase 2 authored evidence layout is manual-first:
+
+- sources live at `sources/<classification>/<source_id>/source.yaml`
+- artifacts live below their source at `sources/<classification>/<source_id>/artifacts/<artifact_id>.yaml`
+- claims live below their artifact at `claims/by-artifact/<artifact_id>/<claim_id>.yaml`
+
 Derived directories:
 
 - `data/normalized/`
@@ -26,6 +32,12 @@ Derived directories:
 - `evaluations/reports/`
 
 `evaluations/runs/` stores run records and metadata. Generated outputs should remain reproducible from authored inputs and versioned rules.
+
+Phase 2 normalized outputs currently include:
+
+- deterministic per-record normalized copies for sources, artifacts, and claims
+- deterministic bundle registries for sources, artifacts, and claims
+- a quarantine registry for unsupported or incomplete claim drafts
 
 ## Identity and reference rules
 
@@ -95,3 +107,22 @@ Phase 1 is complete when the repository contains:
 - deterministic checks for both single-document serialization and small multi-object bundle ordering
 
 Phase 1 does not require real evidence content.
+
+## Phase 2 ingestion foundation
+
+The current repository includes only the manual-first ingestion foundation for Phase 2.
+
+Implemented in Phase 2:
+
+- source registration
+- artifact registration
+- claim authoring template generation
+- claim ingestion and normalization
+- provenance validation
+- quarantine output for unsupported or incomplete claims
+
+Not implemented yet:
+
+- derived timeline generation
+- scenario evaluation
+- reasoning-engine scoring
