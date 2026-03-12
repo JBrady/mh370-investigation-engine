@@ -16,34 +16,39 @@ The repository is designed to:
 
 ## Current goal
 
-Protect and extend the Phase 0 / Phase 1 contract layer without broadening scope.
+Protect and extend the Phase 0 / Phase 1 contracts plus the Phase 2 manual-first ingestion foundation without broadening scope.
 
 The repo currently proves that it can:
 - define the evidence / scenario / reasoning split
 - enforce initial schema contracts
 - validate field-aware reference integrity for core cross-object links
 - validate structural neutrality boundaries
+- register sources and artifacts through a manual-first flow
+- generate non-ingestable claim authoring templates
+- ingest manual claim drafts into authored claim records
+- quarantine incomplete or unsupported claim drafts
+- build deterministic normalized bundles for sources, artifacts, and claims
+- validate claim provenance and source/artifact consistency
 - run deterministic contract tests in CI
 
-The current milestone is still pre-ingestion.
+The current milestone is the Phase 2 ingestion foundation without real corpus ingestion.
 
 That means the repo currently contains:
 - architecture and methodology docs
 - initial schema set
-- placeholder authored YAMLs for claims, constraints, and scenarios
+- placeholder authored YAMLs for constraints and scenarios
 - validation modules
-- schema and integrity tests
+- manual-first ingestion modules and thin tool wrappers
+- schema, integrity, determinism, and ingestion tests
 
 Current placeholder constraint policy:
 - Phase 1 placeholder constraints are explicitly marked with `placeholder: true`
 - non-placeholder constraints must cite at least one evidentiary basis reference
 
-Phase 2 ingestion is not implemented yet.
-
-The most likely next milestone is a narrow Phase 2 implementation:
+The most likely next milestone is the first narrow real Phase 2 corpus:
 - one official source family only
-- manual-first source and artifact registration
-- manual-first claim extraction
+- manual-first source and artifact registration against real records
+- manual-first claim extraction against one approved official corpus
 - no scenario evaluation changes unless required by the ingestion contract
 - no broad source expansion until the first corpus is working end to end
 
@@ -96,12 +101,21 @@ Out of scope by default:
 - `src/mh370_investigation_engine/ids.py`
 - `src/mh370_investigation_engine/yaml_io.py`
 - `src/mh370_investigation_engine/schema_loader.py`
+- `src/mh370_investigation_engine/ingestion/manual_foundation.py`
 - `src/mh370_investigation_engine/validation/schema_validation.py`
 - `src/mh370_investigation_engine/validation/reference_validation.py`
 - `src/mh370_investigation_engine/validation/neutrality_validation.py`
+- `src/mh370_investigation_engine/validation/provenance_validation.py`
+- `tools/ingest/register_source.py`
+- `tools/ingest/register_artifact.py`
+- `tools/ingest/make_claim_template.py`
+- `tools/ingest/ingest_claims.py`
+- `tools/normalize/normalize_evidence.py`
+- `tools/validate/validate_provenance.py`
 - `tests/integrity/test_reference_integrity.py`
 - `tests/integrity/test_neutrality_rules.py`
 - `tests/integrity/test_deterministic_serialization.py`
+- `tests/phase2/test_manual_ingestion.py`
 
 ## Development rules
 
@@ -127,7 +141,7 @@ Out of scope by default:
 
 ## Phase 2 default workflow
 
-If the user asks to start Phase 2, default to this workflow unless they explicitly redirect it:
+If the user asks to continue or expand Phase 2, default to this workflow unless they explicitly redirect it:
 
 1. Stay evidence-first.
    - Start with one official source family only.
@@ -208,20 +222,27 @@ If the user says `Bootstrap yourself`, or says to read `AGENTS.md` and follow it
    - `data/raw/`
    - `data/normalized/`
    - `data/derived/`
-5. Inspect the current validation surface:
+5. Inspect the current Phase 2 implementation surface:
+   - `src/mh370_investigation_engine/ingestion/manual_foundation.py`
+   - `tools/ingest/`
+   - `tools/normalize/normalize_evidence.py`
+   - `tools/validate/validate_provenance.py`
+6. Inspect the current validation surface:
    - `src/mh370_investigation_engine/schema_loader.py`
    - `src/mh370_investigation_engine/yaml_io.py`
    - `src/mh370_investigation_engine/validation/schema_validation.py`
    - `src/mh370_investigation_engine/validation/reference_validation.py`
    - `src/mh370_investigation_engine/validation/neutrality_validation.py`
-6. Inspect the current regression guardrails:
+   - `src/mh370_investigation_engine/validation/provenance_validation.py`
+7. Inspect the current regression guardrails:
    - `tests/schemas/`
    - `tests/integrity/`
-7. Summarize:
+   - `tests/phase2/`
+8. Summarize:
    - current repository phase
    - what is implemented vs not implemented
    - current contract boundaries
-   - whether the next safe step is Phase 2 ingestion, schema tightening, or validator hardening
+   - whether the next safe step is first-corpus ingestion, schema tightening, or validator hardening
    - likely next step without inventing extra scope
 
 The goal of bootstrap is to recover the repo’s methodology and implementation context quickly without re-deriving the architecture from scratch.
@@ -246,6 +267,7 @@ Determinism checks currently cover:
 When changing Phase 2 ingestion behavior, verify:
 - source and artifact records validate
 - claim fixtures or authored claim files validate
+- provenance validation still passes
 - reference integrity still passes
 - neutrality checks still pass
 - deterministic tests still pass
