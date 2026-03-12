@@ -1,0 +1,8 @@
+id: con_refs_constraint
+entity_type: constraint
+schema_version: "1.0.0"
+constraint_type: operational
+constraint_status: soft
+statement: Reference constraint.
+basis_refs:
+  - clm_refs_claim

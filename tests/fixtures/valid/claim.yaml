@@ -1,0 +1,11 @@
+id: clm_fixture_claim
+entity_type: claim
+schema_version: "1.0.0"
+source_id: src_fixture_source
+artifact_id: art_fixture_artifact
+text: Fixture observation extracted from a public artifact.
+classification: observation
+status: confirmed
+provenance:
+  extraction_method: manual
+  locator: page 1

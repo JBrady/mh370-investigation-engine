@@ -1,0 +1,9 @@
+id: con_radar_coverage_placeholder
+entity_type: constraint
+schema_version: "1.0.0"
+constraint_type: operational
+constraint_status: derived
+placeholder: true
+statement: Placeholder record reserved for future modeling of radar coverage considerations.
+basis_refs: []
+applicability_notes: Structural placeholder only. Not a substantive MH370 finding.

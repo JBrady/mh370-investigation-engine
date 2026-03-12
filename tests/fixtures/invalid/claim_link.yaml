@@ -1,0 +1,6 @@
+id: lnk_invalid_link
+entity_type: claim_link
+schema_version: "1.0.0"
+source_claim_id: clm_fixture_claim
+target_claim_id: clm_fixture_claim_other
+link_type: invalid_relation

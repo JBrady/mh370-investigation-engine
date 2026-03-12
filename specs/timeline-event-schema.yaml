@@ -1,0 +1,48 @@
+$schema: "https://json-schema.org/draft/2020-12/schema"
+title: Timeline Event
+type: object
+additionalProperties: false
+required:
+  - id
+  - entity_type
+  - schema_version
+  - derived
+  - claim_refs
+properties:
+  id:
+    type: string
+    pattern: "^evt_[a-z0-9_]+$"
+  entity_type:
+    const: timeline_event
+  schema_version:
+    type: string
+  derived:
+    const: true
+  claim_refs:
+    type: array
+    items:
+      type: string
+      pattern: "^clm_[a-z0-9_]+$"
+  time_start:
+    type: string
+  time_end:
+    type: string
+  geo_reference_ids:
+    type: array
+    items:
+      type: string
+      pattern: "^geo_[a-z0-9_]+$"
+  notes:
+    type: string
+  uncertainty:
+    type: object
+    additionalProperties: false
+    properties:
+      uncertainty_type:
+        type: string
+      uncertainty_magnitude:
+        oneOf:
+          - type: string
+          - type: number
+      uncertainty_notes:
+        type: string

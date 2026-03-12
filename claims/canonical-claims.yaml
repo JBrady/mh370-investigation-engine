@@ -1,0 +1,6 @@
+id: reg_canonical_claims
+entity_type: registry
+schema_version: "1.0.0"
+registry_type: claim_bundle
+description: Placeholder canonical claim bundle. Phase 2 replaces this with a derived artifact.
+items: []

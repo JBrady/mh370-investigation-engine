@@ -1,0 +1,11 @@
+id: clm_refs_claim
+entity_type: claim
+schema_version: "1.0.0"
+source_id: src_refs_source
+artifact_id: art_refs_artifact
+text: Reference fixture claim.
+classification: observation
+status: confirmed
+provenance:
+  extraction_method: manual
+  locator: page 1

@@ -1,0 +1,67 @@
+$schema: "https://json-schema.org/draft/2020-12/schema"
+title: Claim
+type: object
+additionalProperties: false
+required:
+  - id
+  - entity_type
+  - schema_version
+  - source_id
+  - artifact_id
+  - text
+  - classification
+  - status
+  - provenance
+properties:
+  id:
+    type: string
+    pattern: "^clm_[a-z0-9_]+$"
+  entity_type:
+    const: claim
+  schema_version:
+    type: string
+  source_id:
+    type: string
+    pattern: "^src_[a-z0-9_]+$"
+  artifact_id:
+    type: string
+    pattern: "^art_[a-z0-9_]+$"
+  text:
+    type: string
+  classification:
+    type: string
+    enum: [observation, inference]
+  status:
+    type: string
+    enum: [confirmed, strongly_inferred, contested, weak, debunked]
+  provenance:
+    type: object
+    additionalProperties: false
+    required:
+      - extraction_method
+      - locator
+    properties:
+      extraction_method:
+        type: string
+        enum: [manual, parser, llm_assisted]
+      locator:
+        type: string
+      notes:
+        type: string
+  uncertainty:
+    type: object
+    additionalProperties: false
+    properties:
+      uncertainty_type:
+        type: string
+      uncertainty_magnitude:
+        oneOf:
+          - type: string
+          - type: number
+      uncertainty_notes:
+        type: string
+  geo_reference_ids:
+    type: array
+    items:
+      type: string
+      pattern: "^geo_[a-z0-9_]+$"

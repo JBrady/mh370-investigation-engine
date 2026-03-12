@@ -1,0 +1,11 @@
+id: scn_hybrid
+entity_type: scenario
+schema_version: "1.0.0"
+title: Hybrid scenario
+family: hybrid
+assumptions: []
+required_conditions: []
+claim_refs: []
+constraint_refs: []
+contradiction_handling: Placeholder structure only. Evaluation logic will define treatment in a later phase.
+explanatory_gaps: []

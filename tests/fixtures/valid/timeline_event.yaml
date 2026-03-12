@@ -1,0 +1,7 @@
+id: evt_fixture_event
+entity_type: timeline_event
+schema_version: "1.0.0"
+derived: true
+claim_refs:
+  - clm_fixture_claim
+time_start: "2014-03-08T00:00:00Z"

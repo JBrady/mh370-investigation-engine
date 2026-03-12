@@ -1,0 +1,7 @@
+id: con_invalid_constraint
+entity_type: constraint
+schema_version: "1.0.0"
+constraint_type: impossible
+constraint_status: hard
+statement: Invalid constraint fixture.
+basis_refs: []

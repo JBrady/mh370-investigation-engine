@@ -1,0 +1,40 @@
+$schema: "https://json-schema.org/draft/2020-12/schema"
+title: Source
+type: object
+additionalProperties: false
+required:
+  - id
+  - entity_type
+  - schema_version
+  - title
+  - source_type
+  - repository_classification
+properties:
+  id:
+    type: string
+    pattern: "^src_[a-z0-9_]+$"
+  entity_type:
+    const: source
+  schema_version:
+    type: string
+  title:
+    type: string
+  source_type:
+    type: string
+  repository_classification:
+    type: string
+    enum: [official, technical, media]
+  publisher:
+    type: string
+  publication_date:
+    type: string
+  access:
+    type: object
+    additionalProperties: false
+    properties:
+      url:
+        type: string
+      acquisition_notes:
+        type: string
+  notes:
+    type: string

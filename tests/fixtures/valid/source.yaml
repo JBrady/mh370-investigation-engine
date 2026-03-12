@@ -1,0 +1,10 @@
+id: src_fixture_source
+entity_type: source
+schema_version: "1.0.0"
+title: Fixture official source
+source_type: report
+repository_classification: official
+publisher: Fixture publisher
+publication_date: "2015-01-01"
+access:
+  url: https://example.com/source

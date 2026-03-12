@@ -1,0 +1,36 @@
+$schema: "https://json-schema.org/draft/2020-12/schema"
+title: Artifact
+type: object
+additionalProperties: false
+required:
+  - id
+  - entity_type
+  - schema_version
+  - source_id
+  - artifact_type
+  - title
+properties:
+  id:
+    type: string
+    pattern: "^art_[a-z0-9_]+$"
+  entity_type:
+    const: artifact
+  schema_version:
+    type: string
+  source_id:
+    type: string
+    pattern: "^src_[a-z0-9_]+$"
+  artifact_type:
+    type: string
+  title:
+    type: string
+  media_type:
+    type: string
+  locator:
+    type: string
+  file_hash:
+    type: string
+  extraction_ready:
+    type: boolean
+  notes:
+    type: string

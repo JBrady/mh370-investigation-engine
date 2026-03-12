@@ -1,0 +1,9 @@
+id: con_fixture_placeholder
+entity_type: constraint
+schema_version: "1.0.0"
+constraint_type: temporal
+constraint_status: derived
+placeholder: true
+statement: Placeholder constraint fixture.
+basis_refs: []
+applicability_notes: Structural placeholder only.

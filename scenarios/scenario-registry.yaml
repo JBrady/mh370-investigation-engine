@@ -1,0 +1,16 @@
+id: reg_scenarios
+entity_type: registry
+schema_version: "1.0.0"
+registry_type: scenario_registry
+description: Initial scenario registry for structural validation.
+items:
+  - id: scn_deliberate_diversion
+    path: scenarios/deliberate-diversion.yaml
+  - id: scn_ghost_flight
+    path: scenarios/ghost-flight.yaml
+  - id: scn_hijack
+    path: scenarios/hijack.yaml
+  - id: scn_mechanical_plus_incapacitation
+    path: scenarios/mechanical-plus-incapacitation.yaml
+  - id: scn_hybrid
+    path: scenarios/hybrid.yaml

@@ -1,0 +1,9 @@
+id: con_satellite_arc_placeholder
+entity_type: constraint
+schema_version: "1.0.0"
+constraint_type: geometric
+constraint_status: derived
+placeholder: true
+statement: Placeholder record reserved for future modeling of satellite-related geometric compatibility bounds.
+basis_refs: []
+applicability_notes: Structural placeholder only. Not a substantive MH370 finding.

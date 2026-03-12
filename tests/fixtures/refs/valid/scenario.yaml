@@ -1,0 +1,13 @@
+id: scn_refs_scenario
+entity_type: scenario
+schema_version: "1.0.0"
+title: Reference scenario
+family: ref_fixture
+assumptions: []
+required_conditions: []
+claim_refs:
+  - clm_refs_claim
+constraint_refs:
+  - con_refs_constraint
+contradiction_handling: Reference contradiction handling.
+explanatory_gaps: []

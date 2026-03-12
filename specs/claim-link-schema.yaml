@@ -1,0 +1,30 @@
+$schema: "https://json-schema.org/draft/2020-12/schema"
+title: Claim Link
+type: object
+additionalProperties: false
+required:
+  - id
+  - entity_type
+  - schema_version
+  - source_claim_id
+  - target_claim_id
+  - link_type
+properties:
+  id:
+    type: string
+    pattern: "^lnk_[a-z0-9_]+$"
+  entity_type:
+    const: claim_link
+  schema_version:
+    type: string
+  source_claim_id:
+    type: string
+    pattern: "^clm_[a-z0-9_]+$"
+  target_claim_id:
+    type: string
+    pattern: "^clm_[a-z0-9_]+$"
+  link_type:
+    type: string
+    enum: [supports, contradicts, refines, duplicates, depends_on, supersedes]
+  notes:
+    type: string

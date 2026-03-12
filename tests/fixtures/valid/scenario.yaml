@@ -1,0 +1,16 @@
+id: scn_fixture_scenario
+entity_type: scenario
+schema_version: "1.0.0"
+title: Fixture scenario
+family: fixture_family
+assumptions:
+  - Fixture assumption.
+required_conditions:
+  - Fixture required condition.
+claim_refs:
+  - clm_fixture_claim
+constraint_refs:
+  - con_fixture_constraint
+contradiction_handling: Fixture contradiction handling rule.
+explanatory_gaps:
+  - Fixture gap.
