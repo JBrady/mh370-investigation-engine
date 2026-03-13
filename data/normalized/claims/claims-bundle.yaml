@@ -1,0 +1,74 @@
+description: Deterministic normalized claim bundle built from authored claim records.
+entity_type: registry
+id: reg_normalized_claims
+items:
+- artifact_id: art_mot_mh370_factual_information_2015
+  classification: observation
+  entity_type: claim
+  id: clm_mh370_crew_count
+  provenance:
+    extraction_method: manual
+    locator: PDF p.19, Section 1.1.1
+  schema_version: 1.0.0
+  source_id: src_mot_mh370_annex13_reports
+  status: confirmed
+  text: MH370 departed with 12 crew.
+- artifact_id: art_mot_mh370_factual_information_2015
+  classification: observation
+  entity_type: claim
+  id: clm_mh370_departure_time
+  provenance:
+    extraction_method: manual
+    locator: PDF p.19, Section 1.1.1
+  schema_version: 1.0.0
+  source_id: src_mot_mh370_annex13_reports
+  status: confirmed
+  text: MH370 took off from KLIA runway 32R at 1642 UTC [0042 MYT, 08 March 2014].
+- artifact_id: art_mot_mh370_factual_information_2015
+  classification: observation
+  entity_type: claim
+  id: clm_mh370_last_acars_time
+  provenance:
+    extraction_method: manual
+    locator: PDF p.19, Section 1.1.1
+  schema_version: 1.0.0
+  source_id: src_mot_mh370_annex13_reports
+  status: confirmed
+  text: The last normal ACARS communication from MH370 occurred at 1707:29 UTC [0107:29
+    MYT, 08 March 2014].
+- artifact_id: art_mot_mh370_factual_information_2015
+  classification: observation
+  entity_type: claim
+  id: clm_mh370_last_radio_time
+  provenance:
+    extraction_method: manual
+    locator: PDF p.20, Section 1.1.1
+  schema_version: 1.0.0
+  source_id: src_mot_mh370_annex13_reports
+  status: confirmed
+  text: The last recorded radio transmission from MH370 occurred at 1719:30 UTC [0119:30
+    MYT, 08 March 2014].
+- artifact_id: art_mot_mh370_factual_information_2015
+  classification: observation
+  entity_type: claim
+  id: clm_mh370_passenger_count
+  provenance:
+    extraction_method: manual
+    locator: PDF p.19, Section 1.1.1
+  schema_version: 1.0.0
+  source_id: src_mot_mh370_annex13_reports
+  status: confirmed
+  text: MH370 departed with 227 passengers.
+- artifact_id: art_mot_mh370_factual_information_2015
+  classification: observation
+  entity_type: claim
+  id: clm_mh370_persons_on_board_total
+  provenance:
+    extraction_method: manual
+    locator: PDF p.19, Section 1.1.1
+  schema_version: 1.0.0
+  source_id: src_mot_mh370_annex13_reports
+  status: confirmed
+  text: MH370 departed with a total of 239 persons on board.
+registry_type: normalized_claim_bundle
+schema_version: 1.0.0

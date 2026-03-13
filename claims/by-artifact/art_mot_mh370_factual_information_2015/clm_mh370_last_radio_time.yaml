@@ -1,0 +1,12 @@
+artifact_id: art_mot_mh370_factual_information_2015
+classification: observation
+entity_type: claim
+id: clm_mh370_last_radio_time
+provenance:
+  extraction_method: manual
+  locator: PDF p.20, Section 1.1.1
+schema_version: 1.0.0
+source_id: src_mot_mh370_annex13_reports
+status: confirmed
+text: The last recorded radio transmission from MH370 occurred at 1719:30 UTC [0119:30
+  MYT, 08 March 2014].

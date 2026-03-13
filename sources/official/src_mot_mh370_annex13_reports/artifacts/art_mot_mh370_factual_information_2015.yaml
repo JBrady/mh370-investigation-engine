@@ -1,0 +1,12 @@
+artifact_type: report
+entity_type: artifact
+extraction_ready: true
+file_hash: sha256:2a550420faab1ee359c3a5368e8005213c0566e0c119030f3dfeaa82a22a6950
+id: art_mot_mh370_factual_information_2015
+locator: PDF pp. 19-20, Section 1.1.1
+media_type: application/pdf
+notes: Official PDF from the Ministry of Transport Malaysia MH370 archive page.
+raw_relpath: data/raw/official/src_mot_mh370_annex13_reports/Factual-Information-Safety-Investigation-For-MH370.pdf
+schema_version: 1.0.0
+source_id: src_mot_mh370_annex13_reports
+title: Factual Information Safety Investigation For MH370 (9M-MRO)

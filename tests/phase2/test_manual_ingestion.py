@@ -51,6 +51,7 @@ def _artifact_document() -> dict[str, object]:
         "title": "Fixture artifact",
         "media_type": "application/pdf",
         "locator": "pages 1-2",
+        "raw_relpath": "data/raw/official/src_phase2_source/fixture.pdf",
         "file_hash": "sha256:phase2-fixture",
         "extraction_ready": True,
     }
@@ -98,6 +99,7 @@ def test_register_artifact_writes_authored_and_normalized_outputs(tmp_path: Path
 
     artifact_bundle = load_yaml_file(result.normalized_bundle_paths["artifacts"])
     assert [item["id"] for item in artifact_bundle["items"]] == ["art_phase2_artifact"]
+    assert artifact_bundle["items"][0]["raw_relpath"] == "data/raw/official/src_phase2_source/fixture.pdf"
 
 
 def test_duplicate_artifact_file_hash_is_rejected(tmp_path: Path) -> None:

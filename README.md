@@ -53,6 +53,8 @@ The repository now includes a manual-first ingestion foundation for:
 - quarantine output for incomplete or unsupported claim drafts
 - deterministic normalized bundles for sources, artifacts, and claims
 
+Artifact records may optionally include `raw_relpath` to point at an in-repo raw artifact file under `data/raw/`.
+
 ## Validation posture
 
 The current implementation enforces:

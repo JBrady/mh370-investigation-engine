@@ -1,0 +1,11 @@
+artifact_id: art_mot_mh370_factual_information_2015
+classification: observation
+entity_type: claim
+id: clm_mh370_persons_on_board_total
+provenance:
+  extraction_method: manual
+  locator: PDF p.19, Section 1.1.1
+schema_version: 1.0.0
+source_id: src_mot_mh370_annex13_reports
+status: confirmed
+text: MH370 departed with a total of 239 persons on board.
