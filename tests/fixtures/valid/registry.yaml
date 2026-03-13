@@ -1,0 +1,8 @@
+id: reg_fixture_scenarios
+entity_type: registry
+schema_version: "1.0.0"
+registry_type: scenario_registry
+description: Fixture scenario registry for schema validation.
+items:
+  - id: scn_fixture_scenario
+    path: scenarios/ghost-flight.yaml

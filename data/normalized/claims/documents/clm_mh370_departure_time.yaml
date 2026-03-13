@@ -1,0 +1,11 @@
+artifact_id: art_mot_mh370_factual_information_2015
+classification: observation
+entity_type: claim
+id: clm_mh370_departure_time
+provenance:
+  extraction_method: manual
+  locator: PDF p.19, Section 1.1.1
+schema_version: 1.0.0
+source_id: src_mot_mh370_annex13_reports
+status: confirmed
+text: MH370 took off from KLIA runway 32R at 1642 UTC [0042 MYT, 08 March 2014].

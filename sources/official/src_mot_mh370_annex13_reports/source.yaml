@@ -1,0 +1,11 @@
+access:
+  acquisition_notes: Official archive page for the MH370 investigation publications.
+  url: https://www.mot.gov.my/en/aviation/reports/archived-report/mh370
+entity_type: source
+id: src_mot_mh370_annex13_reports
+notes: Initial real ingestion slice starts with the 2015 Factual Information report.
+publisher: Ministry of Transport Malaysia
+repository_classification: official
+schema_version: 1.0.0
+source_type: report_family
+title: Ministry of Transport Malaysia MH370 Official Report Family

@@ -18,10 +18,249 @@ properties:
     type: string
   registry_type:
     type: string
+    enum:
+      - claim_bundle
+      - contradiction_registry
+      - scenario_registry
+      - normalized_source_bundle
+      - normalized_artifact_bundle
+      - normalized_claim_bundle
+      - claim_quarantine
   description:
     type: string
   items:
     type: array
-    items:
-      type: object
-      additionalProperties: true
+allOf:
+  - if:
+      properties:
+        registry_type:
+          const: scenario_registry
+    then:
+      properties:
+        items:
+          items:
+            $ref: "#/$defs/scenario_registry_item"
+  - if:
+      properties:
+        registry_type:
+          enum: [claim_bundle, normalized_claim_bundle]
+    then:
+      properties:
+        items:
+          items:
+            $ref: "#/$defs/claim_item"
+  - if:
+      properties:
+        registry_type:
+          const: normalized_source_bundle
+    then:
+      properties:
+        items:
+          items:
+            $ref: "#/$defs/source_item"
+  - if:
+      properties:
+        registry_type:
+          const: normalized_artifact_bundle
+    then:
+      properties:
+        items:
+          items:
+            $ref: "#/$defs/artifact_item"
+  - if:
+      properties:
+        registry_type:
+          const: claim_quarantine
+    then:
+      properties:
+        items:
+          items:
+            $ref: "#/$defs/quarantine_item"
+  - if:
+      properties:
+        registry_type:
+          const: contradiction_registry
+    then:
+      properties:
+        items:
+          maxItems: 0
+$defs:
+  scenario_registry_item:
+    type: object
+    additionalProperties: false
+    required:
+      - id
+      - path
+    properties:
+      id:
+        type: string
+        pattern: "^scn_[a-z0-9_]+$"
+      path:
+        type: string
+        pattern: "^scenarios/[a-z0-9_-]+\\.yaml$"
+  source_item:
+    type: object
+    additionalProperties: false
+    required:
+      - id
+      - entity_type
+      - schema_version
+      - title
+      - source_type
+      - repository_classification
+    properties:
+      id:
+        type: string
+        pattern: "^src_[a-z0-9_]+$"
+      entity_type:
+        const: source
+      schema_version:
+        type: string
+      title:
+        type: string
+      source_type:
+        type: string
+      repository_classification:
+        type: string
+        enum: [official, technical, media]
+      publisher:
+        type: string
+      publication_date:
+        type: string
+      access:
+        type: object
+        additionalProperties: false
+        properties:
+          url:
+            type: string
+          acquisition_notes:
+            type: string
+      notes:
+        type: string
+  artifact_item:
+    type: object
+    additionalProperties: false
+    required:
+      - id
+      - entity_type
+      - schema_version
+      - source_id
+      - artifact_type
+      - title
+    properties:
+      id:
+        type: string
+        pattern: "^art_[a-z0-9_]+$"
+      entity_type:
+        const: artifact
+      schema_version:
+        type: string
+      source_id:
+        type: string
+        pattern: "^src_[a-z0-9_]+$"
+      artifact_type:
+        type: string
+      title:
+        type: string
+      media_type:
+        type: string
+      locator:
+        type: string
+      raw_relpath:
+        type: string
+      file_hash:
+        type: string
+      extraction_ready:
+        type: boolean
+      notes:
+        type: string
+  claim_item:
+    type: object
+    additionalProperties: false
+    required:
+      - id
+      - entity_type
+      - schema_version
+      - source_id
+      - artifact_id
+      - text
+      - classification
+      - status
+      - provenance
+    properties:
+      id:
+        type: string
+        pattern: "^clm_[a-z0-9_]+$"
+      entity_type:
+        const: claim
+      schema_version:
+        type: string
+      source_id:
+        type: string
+        pattern: "^src_[a-z0-9_]+$"
+      artifact_id:
+        type: string
+        pattern: "^art_[a-z0-9_]+$"
+      text:
+        type: string
+      classification:
+        type: string
+        enum: [observation, inference]
+      status:
+        type: string
+        enum: [confirmed, strongly_inferred, contested, weak, debunked]
+      provenance:
+        type: object
+        additionalProperties: false
+        required:
+          - extraction_method
+          - locator
+        properties:
+          extraction_method:
+            type: string
+            enum: [manual, parser, llm_assisted]
+          locator:
+            type: string
+          notes:
+            type: string
+      uncertainty:
+        type: object
+        additionalProperties: false
+        properties:
+          uncertainty_type:
+            type: string
+          uncertainty_magnitude:
+            oneOf:
+              - type: string
+              - type: number
+          uncertainty_notes:
+            type: string
+      geo_reference_ids:
+        type: array
+        items:
+          type: string
+          pattern: "^geo_[a-z0-9_]+$"
+  quarantine_item:
+    type: object
+    additionalProperties: false
+    required:
+      - draft_id
+      - reasons
+      - draft
+    properties:
+      draft_id:
+        type: string
+      artifact_id:
+        type:
+          - string
+          - "null"
+      source_id:
+        type:
+          - string
+          - "null"
+      reasons:
+        type: array
+        minItems: 1
+        items:
+          type: string
+      draft: {}

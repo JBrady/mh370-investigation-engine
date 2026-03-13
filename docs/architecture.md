@@ -24,6 +24,7 @@ Phase 2 authored evidence layout is manual-first:
 - sources live at `sources/<classification>/<source_id>/source.yaml`
 - artifacts live below their source at `sources/<classification>/<source_id>/artifacts/<artifact_id>.yaml`
 - claims live below their artifact at `claims/by-artifact/<artifact_id>/<claim_id>.yaml`
+- artifacts may optionally include `raw_relpath` to point to a repository-relative raw file under `data/raw/`
 
 Derived directories:
 

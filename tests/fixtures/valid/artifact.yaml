@@ -6,5 +6,6 @@ artifact_type: annex
 title: Fixture artifact
 media_type: application/pdf
 locator: pages 1-2
+raw_relpath: data/raw/official/src_fixture_source/fixture.pdf
 file_hash: sha256:fixture
 extraction_ready: true
